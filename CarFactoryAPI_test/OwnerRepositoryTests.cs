@@ -17,10 +17,11 @@ namespace CarFactoryAPI_test
         private OwnerRepository ownerRepository;
         public OwnerRepositoryTests()
         {
-            // Create Mock of dependencies
+            // Create Mock
             factoryContextMock = new Mock<FactoryContext>();
 
-            // use fake object as dependency
+
+            // Use Object
             ownerRepository = new OwnerRepository(factoryContextMock.Object);
         }
         [Fact]
@@ -31,10 +32,7 @@ namespace CarFactoryAPI_test
         {
             // arrange
 
-            // Build the mock Data
             List<Owner> cars = new List<Owner>() { new Owner() { Id = 10 } };
-
-            // setup called DbSets
             factoryContextMock.Setup(fcm => fcm.Owners).ReturnsDbSet(cars);
 
             // act 

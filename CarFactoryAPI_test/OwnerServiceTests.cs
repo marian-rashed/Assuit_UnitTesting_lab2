@@ -19,26 +19,27 @@ namespace CarFactoryAPI_test
     public class OwnerServiceTests : IDisposable
     {
         private readonly ITestOutputHelper outputHelper;
-        // Create Mock of the dependencies
+
+        // Create Mock
+
         Mock<ICarsRepository> carRepoMock;
         Mock<IOwnersRepository> ownersRepoMock;
         Mock<ICashService> cashServiceMock;
 
-        // use the fake object as dependency
+        // Use Object
         OwnersService ownersService;
 
         public OwnerServiceTests(ITestOutputHelper outputHelper)
         {
             this.outputHelper = outputHelper;
-            // Test Start up
             outputHelper.WriteLine("Test start up");
 
-            // Create Mock of the dependencies
+            // Create Mock
             carRepoMock = new();
             ownersRepoMock = new();
             cashServiceMock = new();
 
-            // use the fake object as dependency
+            // Use Object
             ownersService = new OwnersService(carRepoMock.Object, ownersRepoMock.Object, cashServiceMock.Object);
 
         }
@@ -56,7 +57,6 @@ namespace CarFactoryAPI_test
             // arrange
             FactoryContext factoryContext = new FactoryContext();
 
-            // CarRepository carRepository = new CarRepository(factoryContext);
 
             // Fake Dependency
             CarRepoStup carRepoStup = new CarRepoStup();
@@ -86,10 +86,9 @@ namespace CarFactoryAPI_test
             // arrange
             Car car = new Car() { Id = 10, Owner = new Owner() };
 
-            // Setup the called method
             carRepoMock.Setup(cM=>cM.GetCarById(10)).Returns(car);
 
-            // use the fake object as dependency
+            // Use Object
             BuyCarInput buyCarInput = new BuyCarInput()
             {
                 CarId = 10,
@@ -116,11 +115,9 @@ namespace CarFactoryAPI_test
             outputHelper.WriteLine("Test 3");
 
             // arrange
-            // Build the mock Data
             Car car = new Car() { Id = 5 };
             Owner owner = null;
 
-            // Setup the called Methods
             carRepoMock.Setup(cm => cm.GetCarById(It.IsAny<int>())).Returns(car);
             ownersRepoMock.Setup(om => om.GetOwnerById(It.IsAny<int>())).Returns(owner);
 
