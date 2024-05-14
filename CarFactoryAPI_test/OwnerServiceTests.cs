@@ -48,7 +48,7 @@ namespace CarFactoryAPI_test
             outputHelper.WriteLine("Test clean up");
         }
         [Fact]
-        [Trait("Author", "Ahmed")]
+        [Trait("Author", "Marian")]
 
         public void BuyCar_CarNotExist_NotExist() 
         {
